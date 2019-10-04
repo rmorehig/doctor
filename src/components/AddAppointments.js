@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
 import {
-  Card, CardHeader, CardBody, Form, FormGroup, Label, Input, FormText, Button, Alert
-} from 'reactstrap'
+  Card,
+  CardHeader,
+  CardBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Button,
+  Alert
+} from "reactstrap";
 
-const styles = { "backgroundColor": "#007bff", "color": "#ffffff", "cursor": "pointer" };
+const styles = {
+  backgroundColor: "#007bff",
+  color: "#ffffff",
+  cursor: "pointer"
+};
 
 class AddAppointments extends React.Component {
   constructor(props) {
@@ -23,17 +36,31 @@ class AddAppointments extends React.Component {
     this.setState({
       showBody: !this.state.showBody
     });
-  }
-  save = (e) => {
+  };
+  save = e => {
     e.preventDefault();
-    const { patientName, patientAge, gender, aptDate, aptTime, aptNotes } = this.state;
-    if (patientName !== "" && patientAge !== "" && gender !== "" && aptDate !== "" && aptTime !== "" && aptNotes !== "") {
+    const {
+      patientName,
+      patientAge,
+      gender,
+      aptDate,
+      aptTime,
+      aptNotes
+    } = this.state;
+    if (
+      patientName !== "" &&
+      patientAge !== "" &&
+      gender !== "" &&
+      aptDate !== "" &&
+      aptTime !== "" &&
+      aptNotes !== ""
+    ) {
       let apt = {
         id: Date.now(),
         patientName: this.state.patientName,
         patientAge: this.state.patientAge,
         gender: this.state.gender,
-        aptDate: this.state.aptDate + ' ' + this.state.aptTime,
+        aptDate: this.state.aptDate + " " + this.state.aptTime,
         aptNotes: this.state.aptNotes
       };
       let clear = {
@@ -42,7 +69,7 @@ class AddAppointments extends React.Component {
         gender: "",
         aptDate: "",
         aptTime: "",
-        aptNotes: "",
+        aptNotes: ""
       };
       this.setState({
         formErrors: false,
@@ -55,65 +82,101 @@ class AddAppointments extends React.Component {
         formErrors: true
       });
     }
-
-  }
-  handleChange = (event) => {
+  };
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
-  }
+  };
   render() {
     let displayBody = {
-      display: this.state.showBody ? 'block' : 'none'
+      display: this.state.showBody ? "block" : "none"
     };
     let errors = {
-      display: this.state.formErrors ? 'block' : 'none'
+      display: this.state.formErrors ? "block" : "none"
     };
     return (
       <Card className="mt-4 mb-4 card-border" outline color="primary">
-        <CardHeader style={styles} onClick={this.toggleBody}><i className="fas fa-plus"></i> Add New Appointment</CardHeader>
+        <CardHeader style={styles} onClick={this.toggleBody}>
+          <i className="fas fa-plus"></i> Añadir nueva cita
+        </CardHeader>
         <CardBody style={displayBody} id="aptBody">
           <FormText color="muted" className="mb-1">
-            <span className="text-danger">*</span>All fields are required
+            <span className="text-danger">*</span>Campos requeridos
           </FormText>
           <Form onSubmit={this.save}>
             <FormGroup>
-              <Label for="patientName">Patient Name</Label>
-              <Input type="text" id="patientName" placeholder="Patient's name" value={this.state.patientName} onChange={this.handleChange} />
+              <Label for="patientName">Paciente</Label>
+              <Input
+                type="text"
+                id="patientName"
+                placeholder="Nombre"
+                value={this.state.patientName}
+                onChange={this.handleChange}
+              />
             </FormGroup>
             <FormGroup>
-              <Label for="patientAge">Age</Label>
-              <Input type="number" id="patientAge" placeholder="Patient's age" value={this.state.patientAge} onChange={this.handleChange} />
+              <Label for="patientAge">Edad</Label>
+              <Input
+                type="number"
+                id="patientAge"
+                placeholder="Edad"
+                value={this.state.patientAge}
+                onChange={this.handleChange}
+              />
             </FormGroup>
             <FormGroup>
-              <Label for="gender">Gender</Label>
-              <Input type="select" id="gender" value={this.state.gender} onChange={this.handleChange} >
-                <option>Select gender</option>
-                <option>Male</option>
-                <option>Female</option>
+              <Label for="gender">Género</Label>
+              <Input
+                type="select"
+                id="gender"
+                value={this.state.gender}
+                onChange={this.handleChange}
+              >
+                <option>Seleccionar género</option>
+                <option>Hombre</option>
+                <option>Mujer</option>
               </Input>
             </FormGroup>
             <FormGroup>
-              <Label for="aptDate">Date</Label>
-              <Input type="date" id="aptDate" value={this.state.aptDate} onChange={this.handleChange} />
+              <Label for="aptDate">Fecha</Label>
+              <Input
+                type="date"
+                id="aptDate"
+                value={this.state.aptDate}
+                onChange={this.handleChange}
+              />
             </FormGroup>
             <FormGroup>
-              <Label for="aptTime">Time</Label>
-              <Input type="time" id="aptTime" value={this.state.aptTime} onChange={this.handleChange} />
+              <Label for="aptTime">Hora</Label>
+              <Input
+                type="time"
+                id="aptTime"
+                value={this.state.aptTime}
+                onChange={this.handleChange}
+              />
             </FormGroup>
             <FormGroup>
-              <Label for="exampleText">Problem</Label>
-              <Input type="textarea" id="aptNotes" placeholder="Notes" value={this.state.aptNotes} onChange={this.handleChange} />
+              <Label for="exampleText">Problemas</Label>
+              <Input
+                type="textarea"
+                id="aptNotes"
+                placeholder="Añadir observaciones"
+                value={this.state.aptNotes}
+                onChange={this.handleChange}
+              />
             </FormGroup>
             <Alert color="danger" style={errors}>
-              Please fill all the details
-          </Alert>
-            <Button type="submit" color="primary" block>Add Appointment</Button>
+              Por favor rellena todos los detalles
+            </Alert>
+            <Button type="submit" color="primary" block>
+              Añadir cita
+            </Button>
           </Form>
         </CardBody>
-      </Card >
-    )
+      </Card>
+    );
   }
 }
 
-export default AddAppointments
+export default AddAppointments;

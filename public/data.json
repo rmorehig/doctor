@@ -1,11 +1,11 @@
 [
   {
     "id": 1466416800000,
-    "patientName": "John",
+    "patientName": "Juan",
     "patientAge": 24,
-    "gender": "Male",
+    "gender": "Hombre",
     "aptDate": "2018-12-20 15:30",
-    "aptNotes": "Viral fever"
+    "aptNotes": "Fiebre"
   },
   {
     "id": 1466737200000,
@@ -13,22 +13,22 @@
     "patientAge": 47,
     "gender": "Male",
     "aptDate": "2018-12-24 08:30",
-    "aptNotes": "Back pain"
+    "aptNotes": "Dolor de espalda"
   },
   {
     "id": 1466590800000,
-    "patientName": "Scotty",
+    "patientName": "Silvia",
     "patientAge": 30,
     "gender": "Female",
     "aptDate": "2018-11-22 15:50",
-    "aptNotes": "Fever and headache"
+    "aptNotes": "Vómitos"
   },
   {
     "id": 1466480700000,
-    "patientName": "Michel",
+    "patientName": "Miguel",
     "patientAge": 61,
     "gender": "Male",
     "aptDate": "2018-12-21 9:15",
-    "aptNotes": "Loose motion"
+    "aptNotes": "Mareos"
   }
 ]

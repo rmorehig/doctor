@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   InputGroup,
   InputGroupButtonDropdown,
@@ -6,7 +6,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from 'reactstrap';
+} from "reactstrap";
 
 class SearchAppointments extends React.Component {
   constructor(props) {
@@ -15,15 +15,15 @@ class SearchAppointments extends React.Component {
       dropdownOpen: false
     };
   }
-  handleSort = (e) => {
+  handleSort = e => {
     this.props.sort(e.target.id, this.props.orderDir);
   };
 
-  handleOrder = (e) => {
+  handleOrder = e => {
     this.props.sort(this.props.orderBy, e.target.id);
   };
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     this.props.search(e.target.value);
   };
 
@@ -31,22 +31,57 @@ class SearchAppointments extends React.Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
-  }
+  };
   render() {
     return (
       <InputGroup className="mb-3">
-        <Input id="searchField" placeholder="Search appointments by patient name" type="text" className="form-control" onChange={this.handleSearch} />
-        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+        <Input
+          id="searchField"
+          placeholder="Buscar citas"
+          type="text"
+          className="form-control"
+          onChange={this.handleSearch}
+        />
+        <InputGroupButtonDropdown
+          addonType="append"
+          isOpen={this.state.dropdownOpen}
+          toggle={this.toggleDropDown}
+        >
           <DropdownToggle caret color="primary">
-            Sort by
-            </DropdownToggle>
+            Filtrar por
+          </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem onClick={this.handleSort} id="patientName">Name {(this.props.orderBy === 'patientName') ? <span className="fas fa-check"></span> : null}</DropdownItem>
-            <DropdownItem onClick={this.handleSort} id="patientAge">Age {(this.props.orderBy === 'patientAge') ? <span className="fas fa-check"></span> : null}</DropdownItem>
-            <DropdownItem onClick={this.handleSort} id="gender">Gender {(this.props.orderBy === 'gender') ? <span className="fas fa-check"></span> : null}</DropdownItem>
+            <DropdownItem onClick={this.handleSort} id="patientName">
+              Nombre{" "}
+              {this.props.orderBy === "patientName" ? (
+                <span className="fas fa-check"></span>
+              ) : null}
+            </DropdownItem>
+            <DropdownItem onClick={this.handleSort} id="patientAge">
+              Edad{" "}
+              {this.props.orderBy === "patientAge" ? (
+                <span className="fas fa-check"></span>
+              ) : null}
+            </DropdownItem>
+            <DropdownItem onClick={this.handleSort} id="gender">
+              Género{" "}
+              {this.props.orderBy === "gender" ? (
+                <span className="fas fa-check"></span>
+              ) : null}
+            </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem onClick={this.handleOrder} id="asc">Ascending {(this.props.orderDir === 'asc') ? <span className="fas fa-check"></span> : null}</DropdownItem>
-            <DropdownItem onClick={this.handleOrder} id="desc">Descending {(this.props.orderDir === 'dsc') ? <span className="fas fa-check"></span> : null}</DropdownItem>
+            <DropdownItem onClick={this.handleOrder} id="asc">
+              Ascendente{" "}
+              {this.props.orderDir === "asc" ? (
+                <span className="fas fa-check"></span>
+              ) : null}
+            </DropdownItem>
+            <DropdownItem onClick={this.handleOrder} id="desc">
+              Descendente{" "}
+              {this.props.orderDir === "dsc" ? (
+                <span className="fas fa-check"></span>
+              ) : null}
+            </DropdownItem>
           </DropdownMenu>
         </InputGroupButtonDropdown>
       </InputGroup>
